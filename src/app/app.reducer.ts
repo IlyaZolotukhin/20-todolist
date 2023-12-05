@@ -1,6 +1,5 @@
 import {AnyAction, createSlice, isAnyOf, isFulfilled, isPending, isRejected, PayloadAction} from "@reduxjs/toolkit";
-import {todolistsThunks} from "features/TodolistsList/model/todolists/todolistsSlice";
-import {authThunks} from "features/auth/model/auth.slice";
+import {authThunks} from "features/auth/model/authSlice";
 
 const initialState = {
     status: "idle" as RequestStatusType,
@@ -26,19 +25,19 @@ const slice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addMatcher(isPending,(state) => {
-                state.status = 'loading'
-            })
-        .addMatcher(isRejected,(state,action:AnyAction) => {
+        builder.addMatcher(isPending, (state) => {
+            state.status = 'loading'
+        })
+            .addMatcher(isRejected, (state, action: AnyAction) => {
                 state.status = 'failed'
-            if (action.payload) {
-                if (action.type.includes("addTodolist") || action.type.includes("addTask") || action.type.includes("initializeApp")) return;
-                state.error = action.payload.messages[0]
-            } else {
-                state.error = action.error.message ? action.error.message : 'Some error occurred'
-            }
+                if (action.payload) {
+                    if (action.type.includes("addTodolist") || action.type.includes("addTask") || action.type.includes("initializeApp")) return;
+                    state.error = action.payload.messages[0]
+                } else {
+                    state.error = action.error.message ? action.error.message : 'Some error occurred'
+                }
             })
-        .addMatcher(isFulfilled,(state) => {
+            .addMatcher(isFulfilled, (state) => {
                 state.status = 'succeeded'
             })
             .addMatcher(isAnyOf(authThunks.initializeApp.fulfilled, authThunks.initializeApp.rejected),

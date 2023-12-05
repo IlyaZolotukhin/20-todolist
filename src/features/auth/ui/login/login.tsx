@@ -14,8 +14,10 @@ export const Login = () => {
   }
 
   return (
-    <Grid container justifyContent="center">
-      <Grid item xs={4}>
+    <Grid container justifyContent="center"  >
+      <Grid item xs={4}
+            style={{margin: "20px", padding:"0 0 45px 45px", border: "2px solid white",
+              borderRadius: "5px",opacity: 0.8, backgroundColor: "white"}}>
         <form onSubmit={formik.handleSubmit}>
           <FormControl>
             <FormLabel>
@@ -42,7 +44,7 @@ export const Login = () => {
                 type={"submit"}
                 variant={"contained"}
                 disabled={!(formik.isValid && formik.dirty)}
-                color={"primary"}
+                color="primary"
               >
                 Login
               </Button>

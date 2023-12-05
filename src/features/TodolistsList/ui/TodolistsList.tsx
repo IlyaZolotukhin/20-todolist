@@ -6,7 +6,7 @@ import {AddItemForm} from "common/components";
 import {Todolist} from "features/TodolistsList/ui/Todolist/Todolist";
 import {Navigate} from "react-router-dom";
 import {useActions} from "common/hooks";
-import {selectIsLoggedIn} from "features/auth/model/auth.selectors";
+import {selectIsLoggedIn} from "features/auth/model/authSelectors";
 import {selectTasks} from "features/TodolistsList/model/tasks/tasksSelectors";
 import {selectTodolists} from "features/TodolistsList/model/todolists/todolistsSelectors";
 
@@ -43,7 +43,7 @@ export const TodolistsList = () => {
 
                     return (
                         <Grid item key={tl.id}>
-                            <Paper style={{padding: "10px"}}>
+                            <Paper style={{padding: "10px", opacity: 0.8, marginBottom: "10px"}}>
                                 <Todolist
                                     todolist={tl}
                                     tasks={allTodolistTasks}

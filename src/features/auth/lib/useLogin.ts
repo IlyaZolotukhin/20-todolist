@@ -1,10 +1,10 @@
 import {useActions} from "common/hooks";
-import {authThunks} from "features/auth/model/auth.slice";
+import {authThunks} from "features/auth/model/authSlice";
 import {FormikHelpers, useFormik} from "formik";
 import {LoginParamsType} from "features/auth/api/auth.api";
 import {BaseResponseType} from "common/types";
 import {useSelector} from "react-redux";
-import {selectIsLoggedIn} from "features/auth/model/auth.selectors";
+import {selectIsLoggedIn} from "features/auth/model/authSelectors";
 
 type FormikErrorType = Partial<Omit<LoginParamsType, 'captcha'>>
 

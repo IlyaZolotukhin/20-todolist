@@ -16,9 +16,10 @@ import { Login } from "features/auth/ui/login/login";
 import { TodolistsList } from "features/TodolistsList/ui/TodolistsList";
 import { ErrorSnackbar } from "common/components";
 import { useActions } from "common/hooks";
-import { selectIsLoggedIn } from "features/auth/model/auth.selectors";
+import { selectIsLoggedIn } from "features/auth/model/authSelectors";
 import { selectAppStatus, selectIsInitialized } from "app/app.selectors";
-import { authThunks } from "features/auth/model/auth.slice";
+import { authThunks } from "features/auth/model/authSlice";
+import s from './app.module.css'
 
 function App() {
   const status = useSelector(selectAppStatus);
@@ -35,7 +36,7 @@ function App() {
 
   if (!isInitialized) {
     return (
-      <div style={{ position: "fixed", top: "30%", textAlign: "center", width: "100%" }}>
+      <div className={s.CircularProgress}>
         <CircularProgress />
       </div>
     );
@@ -43,7 +44,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className={s.App}>
         <ErrorSnackbar />
         <AppBar position="static">
           <Toolbar>

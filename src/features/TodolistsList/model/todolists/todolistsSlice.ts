@@ -1,9 +1,13 @@
-import {createSlice, isAnyOf, PayloadAction} from "@reduxjs/toolkit";
-import { RequestStatusType } from "app/app.reducer";
-import { todolistsApi, TodolistType, UpdateTodolistTitleArgType } from "features/TodolistsList/api/todolists/todolistsApi";
-import { createAppAsyncThunk, handleServerAppError, thunkTryCatch } from "common/utils";
-import { ResultCode } from "common/enums";
-import { clearTasksAndTodolists } from "common/actions";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {RequestStatusType} from "app/app.reducer";
+import {
+  todolistsApi,
+  TodolistType,
+  UpdateTodolistTitleArgType
+} from "features/TodolistsList/api/todolists/todolistsApi";
+import {createAppAsyncThunk} from "common/utils";
+import {ResultCode} from "common/enums";
+import {clearTasksAndTodolists} from "common/actions";
 
 const fetchTodolists = createAppAsyncThunk<{ todolists: TodolistType[] }, void>(
   "todo/fetchTodolists",
@@ -96,12 +100,6 @@ const slice = createSlice({
       .addCase(clearTasksAndTodolists, () => {
         return [];
       })
-/*        .addMatcher(isAnyOf(todolistsThunks.removeTodolist.rejected), (state, action) => {
-          const todo = state.find((todo) => todo.id === action.payload.id);
-          if (todo) {
-            todo.entityStatus = action.payload.entityStatus;
-          }
-        })*/
   },
 });
 
