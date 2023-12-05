@@ -43,7 +43,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={'20-todolist'}>
       <div className={s.App}>
         <ErrorSnackbar />
         <AppBar position="static">
