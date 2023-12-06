@@ -20,6 +20,7 @@ import { selectIsLoggedIn } from "features/auth/model/authSelectors";
 import { selectAppStatus, selectIsInitialized } from "app/app.selectors";
 import { authThunks } from "features/auth/model/authSlice";
 import s from './app.module.css'
+import "../index.css";
 
 function App() {
   const status = useSelector(selectAppStatus);
@@ -43,30 +44,46 @@ function App() {
   }
 
   return (
-    <BrowserRouter basename={'20-todolist'}>
-      <div className={s.App}>
-        <ErrorSnackbar />
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu">
-              <Menu />
-            </IconButton>
-            <Typography variant="h6">News</Typography>
-            {isLoggedIn && (
-              <Button color="inherit" onClick={logoutHandler}>
-                Log out
-              </Button>
-            )}
-          </Toolbar>
-          {status === "loading" && <LinearProgress />}
-        </AppBar>
-        <Container fixed>
-          <Routes>
-            <Route path={"/"} element={<TodolistsList />} />
-            <Route path={"/login"} element={<Login />} />
-          </Routes>
-        </Container>
-      </div>
+      <BrowserRouter basename={'20-todolist'}>
+      <div className={s.area} >
+        <div className={s.App}>
+          <ErrorSnackbar />
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton edge="start" color="inherit" aria-label="menu">
+                <Menu />
+              </IconButton>
+              <Typography variant="h6">News</Typography>
+              {isLoggedIn && (
+                  <Button color="inherit" onClick={logoutHandler}>
+                    Log out
+                  </Button>
+              )}
+            </Toolbar>
+            {status === "loading" && <LinearProgress />}
+          </AppBar>
+          <Container fixed>
+            <Routes>
+              <Route path={"/"} element={<TodolistsList />} />
+              <Route path={"/login"} element={<Login />} />
+            </Routes>
+          </Container>
+        </div>
+        <ul className={s.circles}>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div >
+
+
     </BrowserRouter>
   );
 }
